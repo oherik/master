@@ -1,9 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createMutationsSharer from 'vuex-shared-mutations';
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
+  plugins: [createMutationsSharer({ predicate: [
+    'setActiveArea',
+    'setActiveLine',
+    'setActiveMode',
+    'setActiveTool',
+    'setHideTypeMenu'
+  ] })],
   state: {
     activePenMode: "",
     activeRedo: false,
@@ -14,6 +22,7 @@ export const store = new Vuex.Store({
     activeLine: "unassigned",
     activeMode: "sketch",
     activeTool: "select",
+    hideTypeMenu: false,
     paths: [],
     sketchNames: ["Sketch 1", "Sketch 2", "Sketch 3"]
   },
@@ -29,6 +38,9 @@ export const store = new Vuex.Store({
     },
     setActiveTool (state, tool) {
       state.activeTool = tool;
+    },
+    setHideTypeMenu(state, hide){
+      state.hideTypeMenu = hide;
     },
   },
   getters: {

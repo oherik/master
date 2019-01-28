@@ -10,24 +10,29 @@
         </b-col>
       </b-row>
       <b-row class = "bottom-row">
-          <b-col md="auto">
-            <tool-menu></tool-menu>
-          </b-col>
-          <b-col 
-            md="2"
-            v-if="this.$store.state.activeTool == 'line'
-            || this.$store.state.activeTool == 'area'
-            || this.$store.state.activeTool == 'image'
-          
-          ">
-            <type-menu></type-menu>
-          </b-col>
-          <b-col>
+        <b-col>
+          <div class = "menu-overlay">
+              <b-row>
+              <b-col md="auto">
+                <tool-menu></tool-menu>
+              </b-col>
+              <b-col 
+                md="2"
+                v-if="this.$store.state.activeTool == 'line'
+                || this.$store.state.activeTool == 'area'
+                || this.$store.state.activeTool == 'image'
+              
+              ">
+                <type-menu></type-menu>
+              </b-col>
+              </b-row>
+          </div>
+          <div class = "background">
             <img alt="Vue logo" src="./assets/logo.png">
             <HelloWorld msg="Welcome to Your Vue.js App"/>
-            <map-buttons></map-buttons>
-          </b-col>
-
+          </div>
+          <map-buttons></map-buttons>
+        </b-col>
       </b-row>
     </b-container>
   </div>
@@ -68,6 +73,13 @@ export default {
   .main-container{
     padding: 0;
     margin: 0;
+  }
+  .menu-overlay{
+    width: 100%;
+    position: absolute;
+    left: 1vh;
+    top: 0;
+    width: 100%;
   }
   .col{
     padding: 0 !important;

@@ -7865,6 +7865,11 @@ vue@^2.5.21:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.22.tgz#3bf88041af08b8539c37b268b70ca79245e9cc30"
   integrity sha512-pxY3ZHlXNJMFQbkjEgGVMaMMkSV1ONpz+4qB55kZuJzyJOhn6MSy/YZdzhdnumegNzVTL/Dn3Pp4UrVBYt1j/g==
 
+vuex-shared-mutations@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/vuex-shared-mutations/-/vuex-shared-mutations-0.0.7.tgz#f941da465d8c04dfd6d52535bb53b03fa0069e01"
+  integrity sha512-ep0p0oQgVG4DVdA/pyilETds2IdUuFfnQQXCVprU2bYJxfqzpyEoVprVIHAe4itOTO9Vtcwa8uuksmsfIjbhCQ==
+
 vuex@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.1.0.tgz#634b81515cf0cfe976bd1ffe9601755e51f843b9"
