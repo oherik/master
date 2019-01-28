@@ -10,9 +10,11 @@ export const store = new Vuex.Store({
     'setActiveLine',
     'setActiveMode',
     'setActiveTool',
-    'setHideTypeMenu'
+    'setHideTypeMenu',
+    'setActiveImagePath',
   ] })],
   state: {
+    activeImagePath: "logo.png",
     activePenMode: "",
     activeRedo: false,
     activeUndo: true,
@@ -42,6 +44,9 @@ export const store = new Vuex.Store({
     setHideTypeMenu(state, hide){
       state.hideTypeMenu = hide;
     },
+    setActiveImagePath(state, path){
+      state.activeImagePath = path;
+    }
   },
   getters: {
     activeSketchName: state => {

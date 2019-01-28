@@ -29,7 +29,7 @@ export default {
     border-top: solid 1px;
     border-bottom: solid 1px;
     border-color: #e9ecef;
-    width: 8vh;
+    width: 8.55vh;
     height: 8vh;
     padding: 1vh;
     display: flex;
