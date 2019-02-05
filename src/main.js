@@ -6,9 +6,11 @@ import BootstrapVue from 'bootstrap-vue' //Bootstrap, kan vara bra at tha
 import 'vue-awesome/icons'
 import VueSimpleSVG from 'vue-simple-svg'
 import VueRouter from 'vue-router'
+import vueSlider from 'vue-slider-component'
 
 import Icon from 'vue-awesome/components/Icon'
 Vue.component('v-icon', Icon)
+Vue.component('vue-slider', vueSlider)
 
 Vue.use(VueRouter);
 Vue.use(VueSimpleSVG);

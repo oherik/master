@@ -49,6 +49,7 @@ export default {
     border-right: solid 1px;
     border-color: #e9ecef;
     padding: 1vh;
+    z-index: 10;
   }
   .type-menu__wrapper{
     height: 100%;

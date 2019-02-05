@@ -11,10 +11,13 @@ export const store = new Vuex.Store({
     'setActiveMode',
     'setActiveTool',
     'setHideTypeMenu',
-    'setActiveImagePath',
+    'setBackgroundImage',
+    'setBackgroundOpacity',
+    'showLayerMenu',
   ] })],
   state: {
-    activeImagePath: "logo.png",
+    backgroundImage: "logo.png",
+    backgroundOpacity: 0.5,
     activePenMode: "",
     activeRedo: false,
     activeUndo: true,
@@ -25,6 +28,7 @@ export const store = new Vuex.Store({
     activeMode: "sketch",
     activeTool: "select",
     hideTypeMenu: false,
+    showLayerMenu: false,
     paths: [],
     sketchNames: ["Sketch 1", "Sketch 2", "Sketch 3"]
   },
@@ -44,8 +48,14 @@ export const store = new Vuex.Store({
     setHideTypeMenu(state, hide){
       state.hideTypeMenu = hide;
     },
-    setActiveImagePath(state, path){
-      state.activeImagePath = path;
+    setBackgroundImage(state, path){
+      state.backgroundImage = path;
+    },
+    setBackgroundOpacity(state, opacity){
+      state.backgroundOpacity = opacity;
+    },
+    showLayerMenu(state, show){
+      state.showLayerMenu = show;
     }
   },
   getters: {

@@ -127,6 +127,8 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     height: 100%;
+    
+    z-index: 10;
   }
 
    .area-menu__search{

@@ -11,27 +11,15 @@
       </b-row>
       <b-row class = "bottom-row">
         <b-col>
-          <div class = "menu-overlay">
-              <b-row>
-              <b-col md="auto">
-                <tool-menu></tool-menu>
-              </b-col>
-              <b-col 
-                md="2"
-                v-if="this.$store.state.activeTool == 'line'
-                || this.$store.state.activeTool == 'area'
-                || this.$store.state.activeTool == 'image'
-              
-              ">
-                <type-menu></type-menu>
-              </b-col>
-              </b-row>
-          </div>
-          <div class = "background">
-            <img alt="Vue logo" :src="require(`@/assets/${this.$store.state.activeImagePath}`)">
-            <HelloWorld msg="Welcome to Your Vue.js App"/>
-          </div>
-          <map-buttons></map-buttons>
+         
+
+
+
+
+
+          <menu-overlay></menu-overlay>
+          <background-map></background-map>
+
         </b-col>
       </b-row>
     </b-container>
@@ -39,20 +27,16 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import TopMenu from './components/top-menu/TopMenu.vue'
-import ToolMenu from './components/tool-menu/ToolMenu.vue'
-import TypeMenu from './components/type-menu/TypeMenu.vue'
-import MapButtons from './components/map-buttons/MapButtons.vue'
+import MenuOverlay from './components/menu-overlay/MenuOverlay.vue'
+import BackgroundMap from './components/background/BackgroundMap.vue'
 
 export default {
   name: 'client',
   components: {
-    HelloWorld,
     TopMenu,
-    ToolMenu,
-    TypeMenu,
-    MapButtons
+    MenuOverlay,
+    BackgroundMap,
   }
 }
 </script>
@@ -73,13 +57,6 @@ export default {
   .main-container{
     padding: 0;
     margin: 0;
-  }
-  .menu-overlay{
-    width: 100%;
-    position: absolute;
-    left: 1vh;
-    top: 0;
-    width: 100%;
   }
   .col{
     padding: 0 !important;

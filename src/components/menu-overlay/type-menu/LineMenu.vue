@@ -19,7 +19,7 @@
         @button-click="$store.commit('setActiveLine', 'unassigned')"
         >
         <simple-svg
-          :filepath= "require('../../assets/SVG/line.svg')"
+          :filepath= "require('../../../assets/SVG/line.svg')"
           :width="'24px'"
           :height="'24px'"
         />
@@ -46,7 +46,7 @@
         @button-click="$store.commit('setActiveLine', 'primary-road')"
         >
         <simple-svg
-          :filepath= "require('../../assets/SVG/road-secondary.svg')"
+          :filepath= "require('../../../assets/SVG/road-secondary.svg')"
           :width="'24px'"
           :height="'24px'"
         />
@@ -68,7 +68,7 @@
         @button-click="$store.commit('setActiveLine', 'tertiary-road')"
         >
         <simple-svg
-          :filepath= "require('../../assets/SVG/tertiary-road.svg')"
+          :filepath= "require('../../../assets/SVG/tertiary-road.svg')"
           :width="'24px'"
           :height="'24px'"
         />
@@ -141,6 +141,8 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     height: 100%;
+    
+    z-index: 10;
   }
 
    .line-menu__search{

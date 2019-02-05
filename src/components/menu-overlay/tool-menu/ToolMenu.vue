@@ -16,7 +16,7 @@
         @button-click="$store.commit('setActiveTool', 'line')"
         >
          <simple-svg
-          :filepath= "require('../../assets/SVG/draw-line.svg')"
+          :filepath= "require('../../../assets/SVG/draw-line.svg')"
           
           :width="'24px'"
           :height="'24px'"
@@ -78,9 +78,10 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 92vh;
+    height: 100%;
     border-right: solid 1px;
     border-color: #e9ecef;
+    z-index: 10;
   }
   .tool-menu__button-group{
     display: flex;
