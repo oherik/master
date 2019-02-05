@@ -14,11 +14,17 @@ export const store = new Vuex.Store({
     'setBackgroundImage',
     'setBackgroundOpacity',
     'showLayerMenu',
+    'toggleTool',
+    'backgroundTopography',
+    'setShowTopography',
   ] })],
   state: {
-    backgroundImage: "logo.png",
+    backgroundImage: "lerum.png",
+    backgroundTopography: "lerum-topography.png",
     backgroundOpacity: 0.5,
+    showTopography: true,
     activePenMode: "",
+    activeCopy: false,
     activeRedo: false,
     activeUndo: true,
     activePaste: false,
@@ -45,14 +51,27 @@ export const store = new Vuex.Store({
     setActiveTool (state, tool) {
       state.activeTool = tool;
     },
+    toggleTool (state, tool) {
+      if(state.activeTool == tool){
+        state.activeTool='none';
+      } else {
+        state.activeTool = tool;
+      }
+    },
     setHideTypeMenu(state, hide){
       state.hideTypeMenu = hide;
     },
     setBackgroundImage(state, path){
       state.backgroundImage = path;
     },
+    setBackgroundTopography(state, path){
+      state.backgroundTopography = path;
+    },
     setBackgroundOpacity(state, opacity){
       state.backgroundOpacity = opacity;
+    },
+    setShowTopography(state, show){
+      state.showTopography = show;
     },
     showLayerMenu(state, show){
       state.showLayerMenu = show;

@@ -57,6 +57,7 @@ export default {
   .show-hide{
     position: absolute;
     top: 1vh;
+        z-index: 11;
   }
   .show-hide--shown{
     right: -4vh;

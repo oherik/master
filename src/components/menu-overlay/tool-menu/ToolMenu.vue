@@ -5,7 +5,7 @@
         tooltip="Select objects"
         name="Select"
         v-bind:is-active="this.$store.state.activeTool == 'select'"
-        @button-click="$store.commit('setActiveTool', 'select')"
+        @button-click="$store.commit('toggleTool', 'select')"
         >
          <v-icon name="mouse-pointer" scale="1.5"/>
       </tool-menu-button>
@@ -13,7 +13,7 @@
         tooltip="Line (roads and paths)"
         name="Line"
         v-bind:is-active="this.$store.state.activeTool == 'line'"
-        @button-click="$store.commit('setActiveTool', 'line')"
+        @button-click="$store.commit('toggleTool', 'line')"
         >
          <simple-svg
           :filepath= "require('../../../assets/SVG/draw-line.svg')"
@@ -26,7 +26,7 @@
         tooltip="Area (residential areas, water features, and more)"
         name="Area"
         v-bind:is-active="this.$store.state.activeTool == 'area'"
-        @button-click="$store.commit('setActiveTool', 'area')"
+        @button-click="$store.commit('toggleTool', 'area')"
         >
          <v-icon name="draw-polygon" scale="1.5"/>
       </tool-menu-button>
@@ -36,7 +36,7 @@
           tooltip="Add a comment"
           name="Comment"
           v-bind:is-active="this.$store.state.activeTool == 'comment'"
-          @button-click="$store.commit('setActiveTool', 'comment')"
+          @button-click="$store.commit('toggleTool', 'comment')"
           >
           <v-icon name="comment-dots" scale="1.5"/>
         </tool-menu-button>
@@ -44,7 +44,7 @@
         tooltip="Import image"
         name="Image"
         v-bind:is-active="this.$store.state.activeTool == 'image'"
-        @button-click="$store.commit('setActiveTool', 'image')"
+        @button-click="$store.commit('toggleTool', 'image')"
         >
          <v-icon name="image" scale="1.5"/>
       </tool-menu-button>

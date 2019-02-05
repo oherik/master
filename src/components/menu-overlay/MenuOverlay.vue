@@ -54,6 +54,9 @@ export default {
       left: 1%;
       height: 92vh;
       top: 0;
+      
+    z-index: 11;
+      opacity: 0.99;
     }
     .row{
       height: 100%;

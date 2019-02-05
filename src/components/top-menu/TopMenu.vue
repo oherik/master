@@ -44,6 +44,20 @@
     </div>
 
      <div class = "top-menu__button-group">
+         <top-menu-button
+      name="Copy"
+      v-bind:is-active="false"
+      v-bind:is-disabled="!this.$store.state.activeCopy"
+      >
+        <v-icon name="copy" scale="1.5"/>
+    </top-menu-button>
+    <top-menu-button
+      name="Paste"
+      v-bind:is-active="false"
+      v-bind:is-disabled="!this.$store.state.activePaste"
+      >
+        <v-icon name="paste" scale="1.5"/>
+    </top-menu-button>
       <top-menu-button
       name="Undo"
       v-bind:is-active="false"
@@ -57,14 +71,8 @@
       v-bind:is-disabled="!this.$store.state.activeRedo"
       >
         <v-icon name="redo" scale="1.5"/>
-      </top-menu-button>
-    <top-menu-button
-      name="Paste"
-      v-bind:is-active="false"
-      v-bind:is-disabled="!this.$store.state.activePaste"
-      >
-        <v-icon name="paste" scale="1.5"/>
-      </top-menu-button>
+    </top-menu-button>
+  
 
     </div>
   </div>
