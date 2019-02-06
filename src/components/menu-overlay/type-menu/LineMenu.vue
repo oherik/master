@@ -24,6 +24,48 @@
           :height="'24px'"
         />
       </choice>
+      <choice
+        name="Road"
+        color="#FFC63F"
+        tooltip="A road, often connecting cities"
+        v-bind:is-active="this.$store.state.activeLine == 'road'"
+        @button-click="$store.commit('setActiveLine', 'road')"
+        >
+        <simple-svg
+          :filepath= "require('../../../assets/SVG/road-secondary.svg')"
+          :width="'24px'"
+          :height="'24px'"
+        />
+      </choice>
+      <choice
+        name="Street"
+        color="#FFFFFF"
+        tooltip="An urban street"
+        v-bind:is-active="this.$store.state.activeLine == 'street'"
+        @button-click="$store.commit('setActiveLine', 'street')"
+        >
+           <simple-svg
+          :filepath= "require('../../../assets/SVG/tertiary-road.svg')"
+          :width="'24px'"
+          :height="'24px'"
+        />
+      </choice>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <!--
       <choice
         name="Highway"
@@ -38,6 +80,7 @@
           :height="'24px'"
         />
       </choice>-->
+      <!--
       <choice
         name="Primary road"
         color="#FFC63F"
@@ -73,6 +116,7 @@
           :height="'24px'"
         />
       </choice>
+      -->
       <!--
       <choice
         name="Residential street"

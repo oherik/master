@@ -16,7 +16,7 @@
     </div>
      <v-icon name="info-circle"
       scale="1.5"
-      v-b-tooltip.hover.right :title = "tooltip"
+      v-b-tooltip.hover.right.viewport :title = "tooltip"
       class = "choice__tooltip-icon"/>
 
   </div>
@@ -49,6 +49,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     background-color:white;
+    
   }
   .choice:hover{
     background: #03A9F430;

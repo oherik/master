@@ -50,6 +50,7 @@ export default {
     border-color: #e9ecef;
     padding: 1vh;
     z-index: 10;
+    width: 35vh;
   }
   .type-menu__wrapper{
     height: 100%;

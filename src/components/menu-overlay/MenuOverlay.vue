@@ -5,7 +5,7 @@
         <tool-menu></tool-menu>
       </b-col>
     <b-col 
-      md="2"
+      md="auto"
       v-if="this.$store.state.activeTool == 'line'
       || this.$store.state.activeTool == 'area'
       || this.$store.state.activeTool == 'image'
@@ -60,6 +60,9 @@ export default {
     }
     .row{
       height: 100%;
+    }
+    .col-md-3{
+      padding: 0 !important;
     }
 
 </style>  
