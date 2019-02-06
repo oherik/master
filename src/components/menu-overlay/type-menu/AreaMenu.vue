@@ -106,7 +106,12 @@
         tooltip="Factories and other industrial facilites"
         v-bind:is-active="this.$store.state.activeArea == 'industry'"
         @button-click="$store.commit('setActiveArea', 'industry')"
+        has-collapsible
         >
+
+        <template v-slot:collapsible>
+          <h1>Here might be a page title</h1>
+        </template>
       </choice>
 
           <choice
@@ -225,7 +230,7 @@
        <choice
         icon-name="car-side"
         name="Traffic"
-        tooltip="Buildings for storing emergency vehicles, railroad areas, at cetera"
+        tooltip="Buildings for storing emergency vehicles, railroad areas, et cetera"
         color="#8c8c8c"
         v-bind:is-active="this.$store.state.activeArea == 'traffic'"
         @button-click="$store.commit('setActiveArea', 'traffic')"
@@ -306,8 +311,10 @@ export default {
       position: absolute;
       padding: 1vh;
       pointer-events: none;
-      height: 100%;
+      
       width: 4vh;
+      height: 4vh;
+    width: 4vh;
   }
 
   .area-menu__search-input{

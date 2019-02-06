@@ -1,24 +1,36 @@
 <template>
-  <div class = "choice"
-    @click="$emit('button-click')"
-    v-bind:class="{
-      'choice--active': isActive
-    }">
-    <div class = "choice__left">
-      <div class = "choice__image"
-        v-bind:style="{ backgroundColor: color }">
-        <v-icon :name="iconName" scale="1.5" v-if="iconName"/>
-        <slot v-if="!iconName"></slot>
+  <div class = "choice-wrapper">
+    <slot name="yeet"></slot>
+    <div class = "choice"
+      @click="$emit('button-click')"
+      v-bind:class="{
+        'choice--active': isActive
+      }">
+      <div class = "choice__left">
+        <div class = "choice__image"
+          v-bind:style="{ backgroundColor: color }">
+          <v-icon :name="iconName" scale="1.5" v-if="iconName"/>
+          <simple-svg v-if="svgFilepath"
+            :filepath="svgFilepath"
+            :width="'24px'"
+            :height="'24px'"
+          ></simple-svg>
+        </div>
+        <div class = "choice__text">
+          {{name}}
+        </div>
       </div>
-      <div class = "choice__text">
-        {{name}}
-      </div>
-    </div>
-     <v-icon name="info-circle"
-      scale="1.5"
-      v-b-tooltip.hover.right.viewport :title = "tooltip"
-      class = "choice__tooltip-icon"/>
+      <v-icon name="info-circle"
+        scale="1.5"
+        v-b-tooltip.hover.right.viewport :title = "tooltip"
+        class = "choice__tooltip-icon"/>
 
+    </div>
+    <b-collapse :id=name v-model="isActive" v-if="hasCollapsible">
+      <b-card>
+        <slot></slot>
+      </b-card>
+    </b-collapse>
   </div>
 </template>
 
@@ -31,6 +43,8 @@ export default {
     color: String,
     isActive: Boolean,
     tooltip: String,
+    svgFilepath: String,
+    hasCollapsible: {type: Boolean, default: false}
   },
   computed: {
     },

@@ -17,12 +17,8 @@
         tooltip="A general line"
         v-bind:is-active="this.$store.state.activeLine == 'unassigned'"
         @button-click="$store.commit('setActiveLine', 'unassigned')"
+        :svg-filepath="require('../../../assets/SVG/line.svg')"
         >
-        <simple-svg
-          :filepath= "require('../../../assets/SVG/line.svg')"
-          :width="'24px'"
-          :height="'24px'"
-        />
       </choice>
       <choice
         name="Road"
@@ -30,12 +26,8 @@
         tooltip="A road, often connecting cities"
         v-bind:is-active="this.$store.state.activeLine == 'road'"
         @button-click="$store.commit('setActiveLine', 'road')"
+        :svg-filepath="require('../../../assets/SVG/road-secondary.svg')"
         >
-        <simple-svg
-          :filepath= "require('../../../assets/SVG/road-secondary.svg')"
-          :width="'24px'"
-          :height="'24px'"
-        />
       </choice>
       <choice
         name="Street"
@@ -43,12 +35,10 @@
         tooltip="An urban street"
         v-bind:is-active="this.$store.state.activeLine == 'street'"
         @button-click="$store.commit('setActiveLine', 'street')"
+        :svg-filepath= "require('../../../assets/SVG/tertiary-road.svg')"
+        has-collapsible
         >
-           <simple-svg
-          :filepath= "require('../../../assets/SVG/tertiary-road.svg')"
-          :width="'24px'"
-          :height="'24px'"
-        />
+        street choices... :)
       </choice>
 
 
