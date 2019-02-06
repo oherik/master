@@ -56,6 +56,7 @@ export const store = new Vuex.Store({
         state.activeTool='none';
       } else {
         state.activeTool = tool;
+        state.hideTypeMenu = false;
       }
     },
     setHideTypeMenu(state, hide){

@@ -1,7 +1,7 @@
 <template>
  <div class = "top-menu">
     <div class = "top-menu__button-group">
-      <b-dropdown  variant="link" no-caret>
+      <b-dropdown  variant="link" no-caret class = "dropdown-button">
          <template slot="button-content">
             <top-menu-button
               name="Menu"
@@ -97,7 +97,7 @@ export default {
 //#03A9F4
 </script>
 
-<style>
+<style scoped>
   .top-menu{
     background: #284a5a; 
     color: white;
@@ -129,5 +129,11 @@ export default {
       padding: 0 !important;
       color: white !important;
     }
-
+  
+</style>
+<style>
+.btn-link{
+     padding: 0 !important;
+      color: white !important;
+  }
 </style>

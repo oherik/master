@@ -7,6 +7,8 @@ import 'vue-awesome/icons'
 import VueSimpleSVG from 'vue-simple-svg'
 import VueRouter from 'vue-router'
 import vueSlider from 'vue-slider-component'
+import ToggleButton from 'vue-js-toggle-button'
+Vue.use(ToggleButton)
 
 import Icon from 'vue-awesome/components/Icon'
 Vue.component('v-icon', Icon)

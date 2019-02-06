@@ -33,7 +33,7 @@ export default {
 //#03A9F4
 </script>
 
-<style>
+<style scoped>
 
   .map-buttons{
     display: flex;

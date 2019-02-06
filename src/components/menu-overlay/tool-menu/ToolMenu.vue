@@ -71,7 +71,7 @@ export default {
 //#03A9F4
 </script>
 
-<style>
+<style scoped>
   .tool-menu{
     background: #f8fbfc; 
     color: rgba(0,0,0,0.87);
