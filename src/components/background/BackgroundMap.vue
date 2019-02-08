@@ -3,12 +3,13 @@
     <div class = "image-wrapper">
       <img alt="" :src="require(`@/assets/${this.$store.state.backgroundImage}`)"  v-bind:style="{ opacity: this.$store.state.backgroundOpacity }">
     </div>
+     <div class = "image-wrapper" v-if="$store.state.showTopography">
+      <img alt="" :src="require(`@/assets/${this.$store.state.backgroundTopography}`)"  v-bind:style="{ opacity: this.$store.state.backgroundOpacity }">
+    </div>
     <div class = "image-wrapper" v-for="image in imagePaths" :key="image">
       <img alt="" :src="require(`@/assets/${image}`)">
     </div>
-    <div class = "image-wrapper" v-if="$store.state.showTopography">
-      <img alt="" :src="require(`@/assets/${this.$store.state.backgroundTopography}`)"  v-bind:style="{ opacity: this.$store.state.backgroundOpacity }">
-    </div>
+   
   </div>
 </template>
 

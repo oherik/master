@@ -50,7 +50,7 @@ export const store = new Vuex.Store({
   },
   mutations: {
     setImageLayers(state, layers){
-      state.imageLayers = layers;
+      Vue.set(state, "imageLayers", layers);
     },
     setActiveArea (state, area) {
       state.activeArea = area;
