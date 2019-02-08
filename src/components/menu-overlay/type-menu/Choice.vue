@@ -119,6 +119,9 @@ export default {
 
   }
     
+  .choice-wrapper{
+        margin-top: 0vh;
+  }
     
 
 </style>

@@ -12,11 +12,7 @@
       <b-row class = "bottom-row">
         <b-col>
           <menu-overlay></menu-overlay>
-          <div class = "background">
-           <h1>admin mode</h1>
-            <image-selector></image-selector>
-
-          </div>
+          <image-selector></image-selector>
         </b-col>
       </b-row>
     </b-container>

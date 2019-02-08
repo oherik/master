@@ -1,6 +1,6 @@
 <template>
   <div
-    v-b-tooltip.hover.right.d400 :title = "tooltip" :delay="2222"
+    v-b-tooltip.hover.focus.right.d400 :title = "tooltip" :delay="2222"
     class = "tool-menu-button" v-bind:class="{
       'tool-menu-button--active': isActive
     }"

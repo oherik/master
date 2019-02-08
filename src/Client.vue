@@ -37,12 +37,36 @@ export default {
     TopMenu,
     MenuOverlay,
     BackgroundMap,
+  },
+  
+  methods: {
+    toggleBodyClass(addRemoveClass, className) {
+      const el = document.body;
+
+      if (addRemoveClass === 'addClass') {
+        el.classList.add(className);
+      } else {
+        el.classList.remove(className);
+      }
+    },
+  },
+  mounted() {
+    this.toggleBodyClass('addClass', 'mb-0');
+  },
+  destroyed() {
+    this.toggleBodyClass('removeClass', 'mb-0');
   }
+
 }
+
 </script>
 
 <style>
   @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+  .mb-0{
+    overflow: hidden;
+  }
 
   #client {
     font-family: 'Lato', sans-serif;

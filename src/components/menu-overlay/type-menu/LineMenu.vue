@@ -22,7 +22,7 @@
       </choice>
       <choice
         name="Road"
-        color="#FFC63F"
+        color="#FFFC99"
         tooltip="A road, often connecting cities"
         v-bind:is-active="this.$store.state.activeLine == 'road'"
         @button-click="$store.commit('setActiveLine', 'road')"
@@ -38,7 +38,16 @@
         :svg-filepath= "require('../../../assets/SVG/tertiary-road.svg')"
         has-collapsible
         >
-        street choices... :)
+         <div class = "collapsible-content">
+          <b-form-group id=""
+                        label="Subcategory:"
+                        label-for="type-street">
+            <b-form-select id="type-street"
+                          :options="streetTypes"
+                          v-model="streetType">
+            </b-form-select>
+          </b-form-group>
+        </div>
       </choice>
 
 
@@ -153,11 +162,23 @@ export default {
     Choice,
   },
   computed: {
-      
+      streetType: {
+        get: function () {
+          return this.$store.state.streetType;
+        },
+        set: function (newValue) {
+          this.$store.commit("setStreetType", newValue);
+        }
+    },
   },
   data () {
     return {
-      searchString: ''
+      searchString: '',
+      streetTypes: [
+        { text: 'General street', value: null },
+        'Main street', 'Local street', 'Industry street'
+        , 'Bus street', 'Pedestrian street'
+      ],
     }
   },
   methods: {

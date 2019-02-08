@@ -9,7 +9,7 @@
         class = "area-menu__search-icon"
         scale="1.5"/>
   </div>
-  <div class = "area-menu__choices">
+  <div class = "area-menu__choices" >
   
   
       <choice
@@ -41,7 +41,7 @@
         icon-name="cross"
         name="Burial"
         tooltip="Areas for cemetaries, memorials, et cetera"
-        color="#d4f1c9"
+        color="#eca9ed"
         v-bind:is-active="this.$store.state.activeArea == 'burial'"
         @button-click="$store.commit('setActiveArea', 'burial')"
         >
@@ -51,7 +51,7 @@
         icon-name="warehouse"
         name="Business"
         tooltip="Service, storage facilities, and trade"
-        color="#fdf7f0"
+        color="#fdeca6"
         v-bind:is-active="this.$store.state.activeArea == 'business'"
         @button-click="$store.commit('setActiveArea', 'business')"
         >
@@ -61,7 +61,7 @@
         icon-name="city"
         name="City center"
         tooltip="A combination of retail, service, and other central functions"
-        color="#ffc44d"
+        color="#cfaa95"
         v-bind:is-active="this.$store.state.activeArea == 'center'"
         @button-click="$store.commit('setActiveArea', 'center')"
         >
@@ -71,7 +71,7 @@
         icon-name="tractor"
         name="Farms and animals"
         tooltip="Areas for growing produce and other plants, as well as husbandry and animal keeping"
-        color="#fff5d6"
+        color="#bff1ab"
         v-bind:is-active="this.$store.state.activeArea == 'farm'"
         @button-click="$store.commit('setActiveArea', 'farm')"
         >
@@ -81,7 +81,7 @@
         icon-name="gas-pump"
         name="Fuel"
         tooltip="A facility distributing and handling vehicle fuel"
-        color="#eabe86"
+        color="#d3d3d3"
         v-bind:is-active="this.$store.state.activeArea == 'fuel'"
         @button-click="$store.commit('setActiveArea', 'fuel')"
         >
@@ -91,7 +91,7 @@
         icon-name="anchor"
         name="Harbour"
         tooltip="For harbour activities"
-        color="#9197c3"
+        color="#bfbfbf"
         v-bind:is-active="this.$store.state.activeArea == 'harbour'"
         @button-click="$store.commit('setActiveArea', 'harbour')"
         >
@@ -102,22 +102,28 @@
       <choice
         icon-name="industry"
         name="Industry"
-        color="#C5ACFF"
+        color="#ada5d7"
         tooltip="Factories and other industrial facilites"
         v-bind:is-active="this.$store.state.activeArea == 'industry'"
         @button-click="$store.commit('setActiveArea', 'industry')"
         has-collapsible
         >
-
-        <template v-slot:collapsible>
-          <h1>Here might be a page title</h1>
-        </template>
+        <div class = "collapsible-content">
+          <b-form-group id=""
+                        label="Subcategory:"
+                        label-for="type-industry">
+            <b-form-select id="type-industry"
+                          :options="industryTypes"
+                          v-model="industryType">
+            </b-form-select>
+          </b-form-group>
+        </div>
       </choice>
 
           <choice
         icon-name="plus-square"
         name="Medical care"
-        color="#FFA0AF"
+        color="#fb666c"
         tooltip="Hospitals and medical facilities"
         v-bind:is-active="this.$store.state.activeArea == 'hospital'"
         @button-click="$store.commit('setActiveArea', 'hospital')"
@@ -129,7 +135,7 @@
       <choice
         icon-name="briefcase"
         name="Offices"
-        color="#D1BAAB"
+        color="#bd9883"
         tooltip="Predominately office buildings"
         v-bind:is-active="this.$store.state.activeArea == 'commercial'"
         @button-click="$store.commit('setActiveArea', 'commercial')"
@@ -143,7 +149,7 @@
         icon-name="campground"
         name="Outdoor activities"
         tooltip="Areas for running, swimming, camping, et cetera"
-        color="#b1fdc6"
+        color="#6df493"
         v-bind:is-active="this.$store.state.activeArea == 'campground'"
         @button-click="$store.commit('setActiveArea', 'campground')"
         >
@@ -165,7 +171,7 @@
         icon-name="parking"
         name="Parking"
         tooltip="Vehicle parking"
-        color="#b1bffd"
+        color="#e1e1e1"
         v-bind:is-active="this.$store.state.activeArea == 'parking'"
         @button-click="$store.commit('setActiveArea', 'parking')"
         >
@@ -180,15 +186,36 @@
         color="#FFFF83"
         v-bind:is-active="this.$store.state.activeArea == 'residential'"
         @button-click="$store.commit('setActiveArea', 'residential')"
+                has-collapsible
         >
+        <div class = "collapsible-content">
+          <b-form-group id="exampleInputGroup3"
+                        label="Subcategory:"
+                        label-for="type-residential">
+            <b-form-select id="type-residential"
+                          :options="residentialTypes"
+                          v-model="residentialType">
+            </b-form-select>
+          </b-form-group>
+          <b-form-group id="exampleInputGroup4"
+                        label="Average number of stories:"
+                        label-for="stories-residential">
+
+
+                        <number-input id="stories-residential" v-model="residentialStories" :min="1" :max="200" center controls></number-input>
+          </b-form-group>
+        </div>
       </choice>
+      
+      
+        
 
        
       <choice
         icon-name="shopping-cart"
         name="Retail"
         tooltip="Predominately shops or stores"
-        color="#FFD88A"
+        color="#efa77d"
         v-bind:is-active="this.$store.state.activeArea == 'retail'"
         @button-click="$store.commit('setActiveArea', 'retail')"
         >
@@ -198,7 +225,7 @@
       <choice
         icon-name="graduation-cap"
         name="School"
-        color="#FF9E8D"
+        color="#fb8084"
         tooltip="Schools, kindergartens, and more"
         v-bind:is-active="this.$store.state.activeArea == 'education'"
         @button-click="$store.commit('setActiveArea', 'education')"
@@ -211,7 +238,7 @@
         icon-name="cogs"
         name="Technical facilities"
         tooltip="Production and distribution, and handling of electricity, television signals, among others"
-        color="#facc12"
+        color="#9d9ebd  "
         v-bind:is-active="this.$store.state.activeArea == 'tech'"
         @button-click="$store.commit('setActiveArea', 'tech')"
         >
@@ -221,7 +248,7 @@
         icon-name="concierge-bell"
         name="Temporary stay"
         tooltip="Hotels, hostels, et cetera"
-        color="#b1b7fd"
+        color="#f9bb64"
         v-bind:is-active="this.$store.state.activeArea == 'temp'"
         @button-click="$store.commit('setActiveArea', 'temp')"
         >
@@ -231,7 +258,7 @@
         icon-name="car-side"
         name="Traffic"
         tooltip="Buildings for storing emergency vehicles, railroad areas, et cetera"
-        color="#8c8c8c"
+        color="#b7b7b7"
         v-bind:is-active="this.$store.state.activeArea == 'traffic'"
         @button-click="$store.commit('setActiveArea', 'traffic')"
         >
@@ -242,7 +269,7 @@
         icon-name="table-tennis"
         name="Visitor complex"
         tooltip="For example churches, sport facilities and other facilities made for visitors"
-        color="#ee718e"
+        color="#faa86f"
         v-bind:is-active="this.$store.state.activeArea == 'visit'"
         @button-click="$store.commit('setActiveArea', 'visit')"
         >
@@ -266,20 +293,58 @@
 import Choice from './Choice.vue'
 
 export default {
-  name: 'AreaMenu',
+  name: 'AreaMenu', 
   components: {
     Choice,
   },
   computed: {
-      
+      residentialType: {
+        get: function () {
+          return this.$store.state.residentialType;
+        },
+        set: function (newValue) {
+          this.$store.commit("setResidentialType", newValue);
+        }
+    },
+    residentialStories: {
+        get: function () {
+          return this.$store.state.residentialHeight;
+        },
+        set: function (newValue) {
+          this.$store.commit("setResidentialHeight", newValue);
+        }
+    },
+    industryType: {
+        get: function () {
+          return this.$store.state.industryType;
+        },
+        set: function (newValue) {
+          this.$store.commit("setIndustryType", newValue);
+        }
+    },
   },
   data () {
     return {
-      searchString: ''
+      searchString: '',
+      
+      residentialTypes: [
+        { text: 'General residential area', value: null },
+        'Apartments', 'Houses', 'Terraced houses'
+      ],
+      industryTypes: [
+        { text: 'General industry', value: null },
+        'Paper processing', 'Textiles', 'Warehouses',
+      ],
     }
   },
   methods: {
    
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 //f8fbfc
@@ -325,5 +390,10 @@ export default {
       width: 100%;
       overflow-y: scroll;
   }
+
+  .collapsible-content{
+    text-align: left;
+  }
+
 
 </style>

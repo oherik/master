@@ -4,8 +4,10 @@
      <h3 class = "layer-menu__heading">Map</h3>
 
     <div class = "layer-menu__category">
-      <p class = "layer-menu__setting">Opacity</p>
-        <div class = "layer-menu__slider">
+       <b-form-group id=""
+                        label="Opacity:"
+                        label-for="opacity-slider">
+           <div class = "layer-menu__slider" id ="opacity-slider">
           <vue-slider
             ref="slider"
             v-model="backgroundOpacity"
@@ -15,6 +17,8 @@
             <b-form-input size="sm"  v-model="backgroundOpacity"></b-form-input>
           </b-input-group>
         </div>
+      </b-form-group>
+        
     </div>
     <div class = "layer-menu__category">
       <div class = "layer-menu__checkbox">

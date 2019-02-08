@@ -17,6 +17,11 @@ export const store = new Vuex.Store({
     'toggleTool',
     'backgroundTopography',
     'setShowTopography',
+    'setStreetType',
+    'setResidentialHeight',
+    'setResidentialType',
+    'setIndustryType',
+    'setImageLayers'
   ] })],
   state: {
     backgroundImage: "lerum.png",
@@ -35,10 +40,18 @@ export const store = new Vuex.Store({
     activeTool: "select",
     hideTypeMenu: false,
     showLayerMenu: false,
+    streetType: null,
+    residentialType: null,
+    residentialHeight: 3,
+    industryType: null,
     paths: [],
-    sketchNames: ["Sketch 1", "Sketch 2", "Sketch 3"]
+    sketchNames: ["Sketch 1", "Sketch 2", "Sketch 3"],
+    imageLayers: [],
   },
   mutations: {
+    setImageLayers(state, layers){
+      state.imageLayers = layers;
+    },
     setActiveArea (state, area) {
       state.activeArea = area;
     },
@@ -76,7 +89,19 @@ export const store = new Vuex.Store({
     },
     showLayerMenu(state, show){
       state.showLayerMenu = show;
-    }
+    },
+    setResidentialType(state, type){
+      state.residentialType = type;
+    },
+    setStreetType(state, type){
+      state.streetType = type;
+    },
+    setResidentialHeight(state, height){
+      state.residentialHeight = height;
+    },
+    setIndustryType(state, type){
+      state.industryType = type;
+    },
   },
   getters: {
     activeSketchName: state => {

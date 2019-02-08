@@ -7,10 +7,17 @@
     <b-button-group vertical>
       <b-button
         v-b-tooltip.hover.left
-        title="Layers"
+        title="Sketch layers"
         @click="$store.commit('showLayerMenu', !$store.state.showLayerMenu)"
       > 
         <v-icon name="layer-group" scale="1.5"/>
+      </b-button>
+      <b-button
+        v-b-tooltip.hover.left
+        title="Map settings"
+        @click="$store.commit('showLayerMenu', !$store.state.showLayerMenu)"
+      > 
+        <v-icon name="map-marked-alt" scale="1.5"/>
       </b-button>
     </b-button-group>
   </div>

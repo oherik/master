@@ -8,33 +8,24 @@ import VueSimpleSVG from 'vue-simple-svg'
 import VueRouter from 'vue-router'
 import vueSlider from 'vue-slider-component'
 import ToggleButton from 'vue-js-toggle-button'
-Vue.use(ToggleButton)
-
+import VueNumberInput from '@chenfengyuan/vue-number-input';
 import Icon from 'vue-awesome/components/Icon'
+
 Vue.component('v-icon', Icon)
 Vue.component('vue-slider', vueSlider)
 
+Vue.use(VueNumberInput);
+Vue.use(ToggleButton)
 Vue.use(VueRouter);
 Vue.use(VueSimpleSVG);
 Vue.use(BootstrapVue);
+
 Vue.config.productionTip = false
 
 import { store } from './store.js'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-/*
-
-const AppApp = new Vue({
-  render: h => h(App),
-  store
-}).$mount('#app')
-
-const AdminApp = new Vue({
-  render: h => h(Admin)
-}).$mount('#admin')
-
-*/
 const routes = [
   { path: '/admin', component: Admin },
   { path: '/', component: Client }
