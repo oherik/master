@@ -15,18 +15,21 @@ export const store = new Vuex.Store({
     'setBackgroundOpacity',
     'showLayerMenu',
     'toggleTool',
-    'backgroundTopography',
+    'setBackgroundTopography',
     'setShowTopography',
     'setStreetType',
     'setResidentialHeight',
     'setResidentialType',
     'setIndustryType',
-    'setImageLayers'
+    'setImageLayers',
+    'mergeWithState',
+    'setOverlay',
+    'setOverlayOpacity'
   ] })],
   state: {
     backgroundImage: "lerum.png",
     backgroundTopography: "lerum-topography.png",
-    backgroundOpacity: 0.5,
+    backgroundOpacity: 0.75,
     showTopography: true,
     activePenMode: "",
     activeCopy: false,
@@ -47,10 +50,18 @@ export const store = new Vuex.Store({
     paths: [],
     sketchNames: ["Sketch 1", "Sketch 2", "Sketch 3"],
     imageLayers: [],
+    overlayOpacity: 0.5,
+    overlay: "klar__flooding.png",
   },
   mutations: {
     setImageLayers(state, layers){
       Vue.set(state, "imageLayers", layers);
+    },
+    setOverlay(state, path){
+      state.overlay = path;
+    },
+    setOverlayOpacity(state, opacity){
+      state.overlayOpacity = opacity;
     },
     setActiveArea (state, area) {
       state.activeArea = area;
@@ -102,6 +113,11 @@ export const store = new Vuex.Store({
     setIndustryType(state, type){
       state.industryType = type;
     },
+    mergeWithState(state, payload){
+      for (var attribute in payload) { 
+        Vue.set(state, attribute, payload[attribute]); 
+      }
+    }
   },
   getters: {
     activeSketchName: state => {

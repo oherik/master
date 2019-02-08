@@ -47,9 +47,9 @@
    __________________________TASK 3_______________________________
 -->
 
-  <h2>Task 2 (Lerum)</h2>
+  <h2>Task 3 (Klarälven)</h2>
     <b-button-group vertical>
-      <b-button :variant="'primary'" @click="resetTask(2)"> Go to task 2 </b-button>
+      <b-button :variant="'primary'" @click="resetTask(3)"> Go to task 3 </b-button>
     </b-button-group>
 
 <!-- 
@@ -72,6 +72,9 @@ export default {
       activeTask: 1,
       t1: {},
       t2: {},
+      t3: {},
+      t4: {},
+      t5: {},
     }
   },
   computed: {
@@ -121,10 +124,18 @@ export default {
             streetSelected: true,
             areaSelected: true,
           }
-          this.$store.commit("setActiveTool", "select");
-          this.$store.commit("setActiveLine", "unassigned");
-          this.$store.commit("setActiveArea", "unassigned");
-          this.$store.commit("setStreetType", null);
+          this.$store.commit("mergeWithState",
+            {
+              backgroundImage: "lerum.png",
+              backgroundTopography: "lerum-topography.png",
+              activeTool: "select",
+              activeLine: "unassigned",
+              activeArea: "unassigned",
+              streetType: null,
+              activeMode: "sketch",
+              overlay: "",
+            }
+          );
           break;
         case 2:
           this.t2 = {
@@ -132,11 +143,33 @@ export default {
             ignoreError: false,
             streetSelected: false,
           }
-          this.$store.commit("setActiveTool", "select");
-          this.$store.commit("setActiveLine", "street");
-          this.$store.commit("setActiveArea", "industry");
-          this.$store.commit("setStreetType", "Local street");
+          this.$store.commit("mergeWithState",
+            {
+              backgroundImage: "lerum.png",
+              backgroundTopography: "lerum-topography.png",
+              activeTool: "select",
+              activeLine: "street",
+              activeArea: "industry",
+              streetType: "Local street",
+              activeMode: "sketch",
+              overlay: "",
+            }
+          );
           break;
+        case 3:
+          this.t3 = {};
+          this.$store.commit("mergeWithState",
+            {
+              backgroundImage: "klar.png",
+              backgroundTopography: "klar-topography.png",
+              activeTool: "select",
+              activeLine: "unassigned",
+              activeArea: "unassigned",
+              streetType: null,
+              activeMode: "sketch",
+              overlay: "",
+            }
+          );
       }
       this.activeTask = number;
     },
@@ -148,6 +181,15 @@ export default {
           break;
         case 2:
           this.updateT2Layers();
+          break;
+        case 3:
+          this.updateT3Layers();
+          break;
+        case 4:
+          this.updateT4Layers();
+          break;
+        case 5:
+          this.updateT5Layers();
           break;
       }
     },
@@ -203,7 +245,12 @@ export default {
         newLayers.push("lerum__street--selection.png");
       }
       this.$store.commit("setImageLayers",newLayers);
-     }
+     },
+
+     updateT3Layers(){
+       let newLayers = [];
+      this.$store.commit("setImageLayers",newLayers);
+     },
   },
   watch: {
     activeTask: {
@@ -218,6 +265,12 @@ export default {
     deep: true,
    },
     t2: {
+     handler: function () {
+       this.updateLayers();
+     },
+    deep: true,
+   },
+   t3: {
      handler: function () {
        this.updateLayers();
      },
@@ -258,9 +311,9 @@ export default {
   .image-selector{
     z-index: 12;
     position: absolute;
-    left: 40vh;
-    width: 80vh;
-    eight: 100%;
+    left: 50vh;
+    width: 60vh;
+    height: 100%;
     overflow-y: scroll;
     background-color: azure;
   }
@@ -272,6 +325,14 @@ export default {
 
 .btn{
   margin: 1vh;
+}
+
+.vue-js-switch{
+  margin-left: 1vh;
+}
+
+h2 {
+  margin-top: 3vh;
 }
 
 </style>  

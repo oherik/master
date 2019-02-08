@@ -24,7 +24,7 @@
         {{this.$store.getters.activeSketchName}}
       </div>
     </div>
-
+<!--
      <div class = "top-menu__button-group">
         <top-menu-button
         name="Sketch"
@@ -42,7 +42,7 @@
         </top-menu-button>
 
     </div>
-
+-->
      <div class = "top-menu__button-group">
          <top-menu-button
       name="Copy"

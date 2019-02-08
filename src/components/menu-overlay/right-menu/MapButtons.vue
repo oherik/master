@@ -7,15 +7,22 @@
     <b-button-group vertical>
       <b-button
         v-b-tooltip.hover.left
+        title="Analysis"
+        @click="$store.commit('showAnalysisMenu', !$store.state.showAnalysisMenu)"
+      > 
+        <v-icon name="chart-pie" scale="1.5"/>
+      </b-button>
+      <b-button
+        v-b-tooltip.hover.left
         title="Sketch layers"
-        @click="$store.commit('showLayerMenu', !$store.state.showLayerMenu)"
       > 
         <v-icon name="layer-group" scale="1.5"/>
       </b-button>
       <b-button
         v-b-tooltip.hover.left
         title="Map settings"
-        @click="$store.commit('showLayerMenu', !$store.state.showLayerMenu)"
+        
+        :pressed.sync="showLayerMenu"
       > 
         <v-icon name="map-marked-alt" scale="1.5"/>
       </b-button>
@@ -30,6 +37,14 @@ export default {
     
   },
   computed: {
+    showLayerMenu: {
+      get: function () {
+        return this.$store.state.showLayerMenu;
+      },
+      set: function (newValue) {
+        this.$store.commit("showLayerMenu", newValue);
+      }
+    },
       
   },
   methods: {
@@ -56,4 +71,8 @@ export default {
     padding: 1vh !important;
   }
 
+  .active{
+    background-color: #03A9F4 !important; 
+    border-color: #03A9F4  !important;
+  }
 </style>  

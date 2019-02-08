@@ -9,7 +9,9 @@
     <div class = "image-wrapper" v-for="image in imagePaths" :key="image">
       <img alt="" :src="require(`@/assets/${image}`)">
     </div>
-   
+   <div class = "image-wrapper" v-if="$store.state.overlay != ''">
+      <img alt="" :src="require(`@/assets/${this.$store.state.overlay}`)"  v-bind:style="{ opacity: this.$store.state.overlayOpacity }">
+    </div>
   </div>
 </template>
 
