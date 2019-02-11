@@ -1,13 +1,13 @@
 <template>
- <div class = "layer-menu" v-if="this.$store.state.showLayerMenu">
+ <div v-if="this.$store.getters.showMapSetting">
      
-     <h3 class = "layer-menu__heading">Map</h3>
+     <h3 class = "right-menu__heading">Map settings</h3>
 
-    <div class = "layer-menu__category">
+    <div class = "right-menu__category">
        <b-form-group id=""
                         label="Opacity:"
                         label-for="opacity-slider">
-           <div class = "layer-menu__slider" id ="opacity-slider">
+           <div class = "right-menu__slider" id ="opacity-slider">
           <vue-slider
             ref="slider"
             v-model="backgroundOpacity"
@@ -20,8 +20,8 @@
       </b-form-group>
         
     </div>
-    <div class = "layer-menu__category">
-      <div class = "layer-menu__checkbox">
+    <div class = "right-menu__category">
+      <div class = "right-menu__checkbox">
         Show terrain
         <toggle-button v-model="showTopography"
             :value="false"
@@ -29,14 +29,14 @@
                 :sync="true"
                 :labels="true"/>
       </div>
-      <div class = "layer-menu__checkbox">
+      <div class = "right-menu__checkbox">
         Show buildings
         <toggle-button
             :value="true"
             color="#03a9f4"
             :labels="true"/>
       </div>
-       <div class = "layer-menu__checkbox">
+       <div class = "right-menu__checkbox">
         Show roads
         <toggle-button
             :value="true"
@@ -46,21 +46,13 @@
 
     </div>
     <b-dropdown-divider></b-dropdown-divider>
-
-
-    <b-button v-b-tooltip.hover.right.d400 title="Close layer panel"
-      class = "hide-layer-menu-button" 
-      v-if="this.$store.state.showLayerMenu"
-      @click="$store.commit('showLayerMenu', false)">
-        <v-icon name="times" scale="1.5"/>
-    </b-button>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'LayerMenu',
+  name: 'MapSettings',
   components: {
     
   },
@@ -96,59 +88,5 @@ export default {
 </script>
 
 <style scoped>
-  .layer-menu{
-    background: #f8fbfc; 
-    color: rgba(0,0,0,0.87);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 100%;
-    border-left: solid 1px;
-    border-color: #e9ecef;
-    z-index: 10;
-    width: 30vh;
-    padding: 1vh 2vh;
-    text-align: left;
-  }
-  .layer-menu__category{
-    padding-top: 2vh;
-  }
-  .layer-menu__checkbox{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .vue-slider-component .vue-slider-process{
-    background-color: #03a9f4 !important;
-  }
-  .vue-slider-tooltip{
-    border-color: #03a9f4 !important;
-    background-color: #03a9f4 !important;
-  }
-  .layer-menu__slider{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-      .vue-slider-horizontal{
-        margin-right: 2vh;
-      flex: 2;
-    }
-    .input-group{
-      flex: 1;
-    }
 
-
-    .hide-layer-menu-button{
-        position: absolute;
-        top: 0vh;
-        z-index: 11;
-        right: 0vh;
-            width: 4vh;
-    height: 4vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 !important;
-    }
 </style>

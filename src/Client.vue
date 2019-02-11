@@ -79,8 +79,8 @@ export default {
     height: 92vh;
   }
   .main-container{
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   .col{
     padding: 0 !important;
@@ -90,5 +90,9 @@ export default {
   }
   .col-md-2{
     padding: 0 !important;
+  }
+  .row{
+    padding: 0 !important;
+    margin: 0 !important;
   }
 </style>

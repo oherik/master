@@ -134,6 +134,7 @@ export default {
               streetType: null,
               activeMode: "sketch",
               overlay: "",
+              activeSketchId: 0,
             }
           );
           break;
@@ -153,6 +154,7 @@ export default {
               streetType: "Local street",
               activeMode: "sketch",
               overlay: "",
+              activeSketchId: 0,
             }
           );
           break;
@@ -168,6 +170,7 @@ export default {
               streetType: null,
               activeMode: "sketch",
               overlay: "",
+              activeSketchId: 1,
             }
           );
       }

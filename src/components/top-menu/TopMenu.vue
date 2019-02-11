@@ -21,7 +21,20 @@
         <b-dropdown-item href="#">Support</b-dropdown-item>
       </b-dropdown>
       <div class = "top-menu__sketch-name-bar">
-        {{this.$store.getters.activeSketchName}}
+        <vue-tabs v-model="activeSketch">
+        <v-tab v-for="sketch in $store.state.sketchNames" :title="sketch" :key="sketch">
+           <div slot="title">{{sketch}} <v-icon class = "tab__close" name="times" scale="1"/></div>
+        </v-tab>
+        </vue-tabs>
+        <!--
+        <vue-tabs  active-tab-color="#284a5a" 
+           active-text-color="white"
+           class = "new-tab">
+          <v-tab>
+            <div slot="title"> <v-icon name="plus-circle" scale="1"/> New sketch</div>
+          </v-tab>
+        </vue-tabs>
+        -->
       </div>
     </div>
 <!--
@@ -87,7 +100,9 @@ export default {
     TopMenuButton,
   },
   computed: {
-      
+      activeSketch(){
+        return this.$store.getters.activeSketchName;
+      }
   },
   methods: {
    
@@ -98,6 +113,9 @@ export default {
 </script>
 
 <style scoped>
+  .new-tab{
+    background-color:  #284a5a !important; 
+  }
   .top-menu{
     background: #284a5a; 
     color: white;
@@ -112,13 +130,19 @@ export default {
   }
   .top-menu__sketch-name-bar{
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 1.5em;
-    padding-left: 5vh;
-    padding-right: 5vh;
+    font-size: 1em;
+    padding-left: 2vh;
+    flex-direction: row;
+    font-size: 1.25em;
+    align-items: flex-end;
   }
-
+  .vue-tabs{
+    background-color: #f8fbfc
+      }
+  .tab-content{
+      display: none;
+      height: 0;
+    }
   .dropdown-item
     svg{
       margin-left: 1vh;

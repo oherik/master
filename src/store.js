@@ -13,7 +13,6 @@ export const store = new Vuex.Store({
     'setHideTypeMenu',
     'setBackgroundImage',
     'setBackgroundOpacity',
-    'showLayerMenu',
     'toggleTool',
     'setBackgroundTopography',
     'setShowTopography',
@@ -24,7 +23,8 @@ export const store = new Vuex.Store({
     'setImageLayers',
     'mergeWithState',
     'setOverlay',
-    'setOverlayOpacity'
+    'setOverlayOpacity',
+    'setActiveLayerMenu'
   ] })],
   state: {
     backgroundImage: "lerum.png",
@@ -42,18 +42,21 @@ export const store = new Vuex.Store({
     activeMode: "sketch",
     activeTool: "select",
     hideTypeMenu: false,
-    showLayerMenu: false,
     streetType: null,
     residentialType: null,
     residentialHeight: 3,
     industryType: null,
     paths: [],
-    sketchNames: ["Sketch 1", "Sketch 2", "Sketch 3"],
+    sketchNames: ["Hallegården", "Riverfront"],
     imageLayers: [],
     overlayOpacity: 0.5,
     overlay: "klar__flooding.png",
+    activeLayerMenu: "",
   },
   mutations: {
+    setActiveLayerMenu(state, menuName){
+      state.activeLayerMenu = menuName;
+    },
     setImageLayers(state, layers){
       Vue.set(state, "imageLayers", layers);
     },
@@ -98,9 +101,6 @@ export const store = new Vuex.Store({
     setShowTopography(state, show){
       state.showTopography = show;
     },
-    showLayerMenu(state, show){
-      state.showLayerMenu = show;
-    },
     setResidentialType(state, type){
       state.residentialType = type;
     },
@@ -122,6 +122,18 @@ export const store = new Vuex.Store({
   getters: {
     activeSketchName: state => {
       return state.sketchNames[state.activeSketchId];
+    },
+    showMapSetting: state => {
+      return state.activeLayerMenu == 'map';
+    },
+    showAnalysisSettings: state => {
+      return state.activeLayerMenu == 'analysis';
+    },
+    showLayerSettings: state => {
+      return state.activeLayerMenu == 'layer';
+    },
+    showRightMenu: state => {
+      return state.activeLayerMenu != null && state.activeLayerMenu != '';
     }
   }
 })

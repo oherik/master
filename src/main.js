@@ -10,10 +10,13 @@ import vueSlider from 'vue-slider-component'
 import ToggleButton from 'vue-js-toggle-button'
 import VueNumberInput from '@chenfengyuan/vue-number-input';
 import Icon from 'vue-awesome/components/Icon'
+import VueTabs from 'vue-nav-tabs'
+import 'vue-nav-tabs/themes/vue-tabs.css'
 
 Vue.component('v-icon', Icon)
 Vue.component('vue-slider', vueSlider)
 
+Vue.use(VueTabs)
 Vue.use(VueNumberInput);
 Vue.use(ToggleButton)
 Vue.use(VueRouter);

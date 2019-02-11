@@ -8,21 +8,21 @@
       <b-button
         v-b-tooltip.hover.left
         title="Analysis"
-        @click="$store.commit('showAnalysisMenu', !$store.state.showAnalysisMenu)"
+        :pressed.sync="showAnalysisSettings"
       > 
         <v-icon name="chart-pie" scale="1.5"/>
       </b-button>
       <b-button
         v-b-tooltip.hover.left
         title="Sketch layers"
+        :pressed.sync="showLayerSettings"
       > 
         <v-icon name="layer-group" scale="1.5"/>
       </b-button>
       <b-button
         v-b-tooltip.hover.left
         title="Map settings"
-        
-        :pressed.sync="showLayerMenu"
+        :pressed.sync="showMapSetting"
       > 
         <v-icon name="map-marked-alt" scale="1.5"/>
       </b-button>
@@ -37,14 +37,42 @@ export default {
     
   },
   computed: {
-    showLayerMenu: {
+    showMapSetting: {
       get: function () {
-        return this.$store.state.showLayerMenu;
+        return this.$store.getters.showMapSetting;
       },
       set: function (newValue) {
-        this.$store.commit("showLayerMenu", newValue);
+       if(newValue){
+           this.$store.commit("setActiveLayerMenu", "map");
+        } else {
+           this.$store.commit("setActiveLayerMenu", '');
+        }
       }
     },
+    showAnalysisSettings:{
+      get: function () {
+        return this.$store.getters.showAnalysisSettings;
+      },
+      set: function (newValue) {
+        if(newValue){
+           this.$store.commit("setActiveLayerMenu", "analysis");
+        } else {
+           this.$store.commit("setActiveLayerMenu", '');
+        }
+      }
+    },
+    showLayerSettings:{
+      get: function () {
+        return this.$store.getters.showLayerSettings;
+      },
+      set: function (newValue) {
+        if(newValue){
+           this.$store.commit("setActiveLayerMenu", "layer");
+        } else {
+           this.$store.commit("setActiveLayerMenu", '');
+        }
+      }
+    }
       
   },
   methods: {

@@ -13,11 +13,8 @@
     ">
       <type-menu></type-menu>
     </b-col>
-    
     <b-col>
-      
-                  <right-menu></right-menu>
-      
+      <right-menu></right-menu>
     </b-col>
       </b-row>
   </div>
@@ -47,11 +44,15 @@ export default {
 </script>
 
 <style>
-
+  .tab__close{
+    margin-left: 1vh;
+  }
+  .tab__new{
+    color: gray;
+   }
   .menu-overlay{
-      width: 98%;
+      width: 100%;
       position: absolute;
-      left: 1%;
       height: 92vh;
       top: 0;
       
@@ -64,5 +65,11 @@ export default {
     .col-md-3{
       padding: 0 !important;
     }
-
+    .vue-tabs{
+background-color: #f8fbfc
+    }
+    .tab-content{
+      display: none;
+      height: 0;
+    }
 </style>  
