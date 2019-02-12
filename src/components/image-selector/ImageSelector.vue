@@ -24,7 +24,7 @@
 <!-- 
    __________________________TASK 2_______________________________
 -->
-     <h2>Task 2 (Lerum)</h2>
+     <h2>Task 2 (Lerum, varning)</h2>
      <b-button-group vertical>
       <b-button :variant="'primary'" @click="resetTask(2)"> Go to task 2 </b-button>
     </b-button-group>
@@ -51,12 +51,36 @@
     <b-button-group vertical>
       <b-button :variant="'primary'" @click="resetTask(3)"> Go to task 3 </b-button>
     </b-button-group>
+    <div class = "image-selector__toggle">
+      Toggle error message
+      <toggle-button v-model="t3.displayErrorMessage" :sync="true"/>
+    </div>
+    <div class = "image-selector__toggle">
+      Ignore error
+      <toggle-button v-model="t3.ignoreError" :sync="true"/>
+    </div>
+    <b-button-group vertical>
+      <b-button @click="t3ViewAnalysis"> Visa analys </b-button>
+      <b-button @click="t3SelectArea"> Select </b-button>
+      <b-button @click="t3Deselect"> Deselect </b-button>
+      <b-button @click="t3Move"> Move </b-button>
+    </b-button-group>
 
 <!-- 
    __________________________TASK 4_______________________________
 -->
 
-
+ <h2>Task 4 (Kommentar)</h2>
+    <b-button-group vertical>
+      <b-button :variant="'primary'" @click="resetTask(4)"> Go to task 4 </b-button>
+      <b-button @click="t4SelectArea"> Select </b-button>
+      <b-button @click="t4Deselect"> Deselect </b-button>
+    </b-button-group>
+    <div class = "image-selector__toggle">
+      Högerklick
+      <toggle-button v-model="t4.rightClick" :sync="true"/>
+    </div>
+    
 <!-- 
    __________________________TASK 5_______________________________
 -->
@@ -107,13 +131,61 @@ export default {
       this.$store.commit("setStreetType", "Industry street");
     },
     t2SelectStreet(){
+      /*
       this.$store.commit("setActiveLine", "street");
       let that = this;
       setTimeout(function(){that.$store.commit("setActiveTool", "line");}, 300);
+      */
       this.t2.streetSelected = true;
     },
     t2Deselect(){
       this.t2.streetSelected = false;
+    },
+    t3ViewAnalysis(){
+      let that = this;
+      
+     
+      that.$store.commit("mergeWithState",
+        {
+          analysis: "Flooding",
+          activeLayerMenu: "analysis",
+        }
+      );
+      
+      setTimeout(function(){
+         that.t3.displayErrorMessage = false;
+      }, 150);
+    },
+    t3SelectArea(){
+      /*
+      this.$store.commit("mergeWithState",
+        {
+          activeTool: "area",
+          activeArea: "residential",
+        }
+      );
+      */
+      this.t3.areaSelected = true;
+    },
+    t3Deselect(){
+      this.t3.areaSelected = false;
+    },
+    t3Move(){
+      this.t3.areaMoved = true;
+    },
+    t4Deselect(){
+      this.t4.areaSelected = false;
+    },
+     t4SelectArea(){
+       /*
+      this.$store.commit("mergeWithState",
+        {
+          activeTool: "area",
+          activeArea: "residential",
+        }
+      );
+      */
+      this.t4.areaSelected = true;
     },
     resetTask(number){
       switch(number){
@@ -133,8 +205,9 @@ export default {
               activeArea: "unassigned",
               streetType: null,
               activeMode: "sketch",
-              overlay: "",
+              analysis: "",
               activeSketchId: 0,
+              overlayLayers: [],
             }
           );
           break;
@@ -153,13 +226,19 @@ export default {
               activeArea: "industry",
               streetType: "Local street",
               activeMode: "sketch",
-              overlay: "",
               activeSketchId: 0,
+              overlayLayers: [],
             }
           );
           break;
         case 3:
-          this.t3 = {};
+          this.t3 = {
+            displayErrorMessage: false,
+            ignoreError: false,
+            areaSelected: false,
+            areaDeleted: false,
+            areaMoved: false,
+          };
           this.$store.commit("mergeWithState",
             {
               backgroundImage: "klar.png",
@@ -169,12 +248,55 @@ export default {
               activeArea: "unassigned",
               streetType: null,
               activeMode: "sketch",
-              overlay: "",
               activeSketchId: 1,
+              overlayLayers: [],
             }
           );
+          break;
+        case 4:
+          this.t4 = {
+            rightClick: false,
+            newComment: false,
+            finished: false,
+            areaSelected: false,
+          }
+           this.$store.commit("mergeWithState",
+            {
+              backgroundImage: "klar.png",
+              backgroundTopography: "klar-topography.png",
+              activeTool: "select",
+              activeLine: "unassigned",
+              activeArea: "unassigned",
+              activeMode: "sketch",
+              activeSketchId: 1,
+              overlayLayers: [],
+              analysis: "",
+              activeLayerMenu: "",
+            }
+          );
+          break;
       }
       this.activeTask = number;
+    },
+    setTopButtons(){
+      switch(this.activeTask){
+        
+        case 1:
+          this.$store.commit("setActiveCopy", this.t1.areaSelected ||this.t1.streetSelected);
+          break;
+        case 2:
+          this.$store.commit("setActiveCopy", this.t2.streetSelected);
+          break;
+        case 3:
+          this.$store.commit("setActiveCopy", this.t3.areaSelected);
+          break;
+        case 4:
+           this.$store.commit("setActiveCopy", this.t4.areaSelected);
+          break;
+        case 5:
+          
+          break;
+      }
     },
 
     updateLayers(){
@@ -195,6 +317,11 @@ export default {
           this.updateT5Layers();
           break;
       }
+      let that = this;
+          setTimeout(function(){ 
+            that.setTopButtons();
+            }, 50);
+ 
     },
     updateT1Layers(){
       let newLayers = [];
@@ -227,32 +354,89 @@ export default {
     },
 
     updateT2Layers(){
-      let newLayers = [];
+      let newBackground = [];
+      let newOverlay = [];
       let isWrongStreetType = this.streetType != "Industry street";
-      newLayers.push("lerum__area.png");
+      newBackground.push("lerum__area.png");
       if(isWrongStreetType){
-        newLayers.push("lerum__street--local.png");
+        newBackground.push("lerum__street--local.png");
       }else{
-        newLayers.push("lerum__street.png");
+        newBackground.push("lerum__street.png");
       }
       
       if(isWrongStreetType && !this.t2.ignoreError){
         if(this.t2.displayErrorMessage){
-          newLayers.push("lerum__street--warning.png");
-          newLayers.push("lerum__warning-message.png");
+          newOverlay.push("lerum__street--warning.png");
+           if(this.t2.streetSelected){
+              newOverlay.push("lerum__street--selection.png");
+            }
+          newOverlay.push("lerum__warning-message.png");
         }else{
-          newLayers.push("lerum__street--warning.png");
+          newOverlay.push("lerum__street--warning.png");
+           if(this.t2.streetSelected){
+            newOverlay.push("lerum__street--selection.png");
+          }
         }
       }
-      if(this.t2.streetSelected){
-        newLayers.push("lerum__street--selection.png");
-      }
-      this.$store.commit("setImageLayers",newLayers);
+     
+      this.$store.commit("mergeWithState",
+            {
+              imageLayers: newBackground,
+              overlayLayers: newOverlay,
+            }
+          );
      },
 
      updateT3Layers(){
-       let newLayers = [];
-      this.$store.commit("setImageLayers",newLayers);
+      let newBackground = ["klar__sketch.png"];
+      let newOverlay = [];
+      if(!this.t3.areaMoved && !this.t3.areaDeleted){
+        newBackground.push("klar__area.png");
+        
+        if(!this.t3.ignoreError){
+          if(this.t3.displayErrorMessage){
+            newOverlay.push("klar__area--warning.png");
+            newOverlay.push("klar__warning-message.png");
+          }else{
+            newOverlay.push("klar__area--warning.png");
+          }
+         
+        }
+        if(this.t3.areaSelected){
+          newOverlay.push("klar__area--selection.png");
+        }
+      } 
+      if(this.t3.areaMoved){
+        newBackground.push("klar__area-moved.png");
+        if(this.t3.areaSelected){
+          newOverlay.push("klar__area-moved--selection.png");
+        }
+      }
+      this.$store.commit("mergeWithState",
+            {
+              imageLayers: newBackground,
+              overlayLayers: newOverlay,
+            }
+          );
+     },
+     updateT4Layers(){
+      let newBackground = ["klar__sketch.png", "klar__area-moved.png"];
+      let newOverlay = [];
+      if(this.t4.areaSelected){
+        newOverlay.push("klar__area-moved--selection.png");
+      }
+      if(this.t4.rightClick){
+        newOverlay.push("klar__right-click.png");
+      }
+
+
+
+      this.$store.commit("mergeWithState",
+            {
+              imageLayers: newBackground,
+              overlayLayers: newOverlay,
+            }
+          );
      },
   },
   watch: {
@@ -274,6 +458,18 @@ export default {
     deep: true,
    },
    t3: {
+     handler: function () {
+       this.updateLayers();
+     },
+    deep: true,
+   },
+   t4: {
+     handler: function () {
+       this.updateLayers();
+     },
+    deep: true,
+   },
+   t5: {
      handler: function () {
        this.updateLayers();
      },

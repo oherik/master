@@ -47,7 +47,7 @@ export default {
     position: absolute;
     top: 0;
     right: 0;    
-    height: 91vh;
+    height: 100%;;
     display: flex;
     flex-direction: row;
   }

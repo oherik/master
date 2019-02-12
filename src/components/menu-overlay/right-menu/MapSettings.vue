@@ -5,7 +5,7 @@
 
     <div class = "right-menu__category">
        <b-form-group id=""
-                        label="Opacity:"
+                        label="Map visibility:"
                         label-for="opacity-slider">
            <div class = "right-menu__slider" id ="opacity-slider">
           <vue-slider

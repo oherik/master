@@ -160,7 +160,7 @@
       <choice
         icon-name="tree"
         name="Park and nature"
-        color="#C7D79E"
+        color="#98CE51"
         tooltip="A park or nature area"
         v-bind:is-active="this.$store.state.activeArea == 'park'"
         @button-click="$store.commit('setActiveArea', 'park')"

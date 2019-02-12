@@ -15,6 +15,7 @@
         <b-dropdown-item href="#">Recent sketches <v-icon name="caret-right" scale="1"/></b-dropdown-item>
         <b-dropdown-divider></b-dropdown-divider>
         <b-dropdown-item href="#">Export sketch</b-dropdown-item>
+        <b-dropdown-item href="#">Print sketch</b-dropdown-item>
         <b-dropdown-item href="#">Rename sketch</b-dropdown-item>
         <b-dropdown-item href="#">Sketch versions <v-icon name="caret-right" scale="1"/></b-dropdown-item>
          <b-dropdown-divider></b-dropdown-divider>
@@ -100,9 +101,14 @@ export default {
     TopMenuButton,
   },
   computed: {
-      activeSketch(){
-        return this.$store.getters.activeSketchName;
+      activeSketch: {
+      get: function () {
+         return this.$store.getters.activeSketchName;
+      },
+      set: function () {
+        
       }
+    }       
   },
   methods: {
    
