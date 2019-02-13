@@ -147,6 +147,9 @@ export const store = new Vuex.Store({
     showLayerSettings: state => {
       return state.activeLayerMenu == 'layer';
     },
+    showReport: state => {
+      return state.activeLayerMenu == 'report';
+    },
     showRightMenu: state => {
       return state.activeLayerMenu != null && state.activeLayerMenu != '';
     },

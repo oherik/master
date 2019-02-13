@@ -389,6 +389,7 @@ export default {
   .area-menu__choices{
       width: 100%;
       overflow-y: scroll;
+    margin-top: 1vh;
   }
 
   .collapsible-content{

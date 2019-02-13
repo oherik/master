@@ -4,7 +4,7 @@
       <b-button v-b-tooltip.hover.left title="Zoom in"> <v-icon name="plus" scale="1.5"/></b-button>
       <b-button v-b-tooltip.hover.left title="Zoom out"> <v-icon name="minus" scale="1.5"/></b-button>
     </b-button-group>
-    <b-button-group vertical>
+    <b-button-group vertical class = "map-buttons__button-group">
       <b-button
         v-b-tooltip.hover.left
         title="Analysis"
@@ -12,6 +12,8 @@
       > 
         <v-icon name="chart-pie" scale="1.5"/>
       </b-button>
+      
+   
       <b-button
         v-b-tooltip.hover.left
         title="Sketch layers"
@@ -25,6 +27,15 @@
         :pressed.sync="showMapSetting"
       > 
         <v-icon name="map-marked-alt" scale="1.5"/>
+      </b-button>
+     </b-button-group>
+    <b-button-group vertical class = "map-buttons__button-group">
+      <b-button
+        v-b-tooltip.hover.left
+        title="Sketch details"
+        :pressed.sync="showReport"
+      > 
+        <v-icon name="file-invoice" scale="1.5"/>
       </b-button>
     </b-button-group>
   </div>
@@ -56,6 +67,18 @@ export default {
       set: function (newValue) {
         if(newValue){
            this.$store.commit("setActiveLayerMenu", "analysis");
+        } else {
+           this.$store.commit("setActiveLayerMenu", '');
+        }
+      }
+    },
+     showReport:{
+      get: function () {
+        return this.$store.getters.showReport;
+      },
+      set: function (newValue) {
+        if(newValue){
+           this.$store.commit("setActiveLayerMenu", "report");
         } else {
            this.$store.commit("setActiveLayerMenu", '');
         }

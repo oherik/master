@@ -6,6 +6,7 @@
       <map-settings></map-settings>
       <layer-settings></layer-settings>
       <analysis-settings></analysis-settings>
+      <report></report>
       <b-button v-b-tooltip.hover.right.d400 title="Close panel"
         class = "hide-right-menu-button" 
         @click="$store.commit('setActiveLayerMenu', '')">
@@ -21,6 +22,7 @@ import MapButtons from './MapButtons.vue'
 import MapSettings from "./MapSettings.vue";
 import LayerSettings from "./LayerSettings.vue";
 import AnalysisSettings from "./AnalysisSettings.vue";
+import Report from "./Report.vue";
 
 export default {
   name: 'RightMenu',
@@ -29,6 +31,7 @@ export default {
     MapSettings,
     LayerSettings,
     AnalysisSettings,
+    Report,
   },
   computed: {
       
@@ -62,7 +65,7 @@ export default {
     border-left: solid 1px;
     border-color: #e9ecef;
     z-index: 10;
-    width: 30vh;
+    width: 35vh;
     padding: 2vh;
     text-align: left;
   }

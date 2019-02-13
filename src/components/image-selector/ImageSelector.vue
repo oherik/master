@@ -77,8 +77,27 @@
       <b-button @click="t4Deselect"> Deselect </b-button>
     </b-button-group>
     <div class = "image-selector__toggle">
+      Infoklick
+      <toggle-button v-model="t4.infoClick" :sync="true"/>
+    </div>
+    <b-button @click="t4Comment"> Ny kommentar </b-button>
+    <b-button @click="t4WriteComment"> Skriver något </b-button>
+    <b-button @click="t4CancelComment"> Avbryt </b-button>
+    <b-button @click="t4SaveComment"> Spara </b-button>
+    <div class = "image-selector__toggle">
       Högerklick
       <toggle-button v-model="t4.rightClick" :sync="true"/>
+    </div>
+     <b-button-group vertical>
+      <b-button @click="t4CommentPopup"> Klick på kommentar </b-button>
+      <b-button @click="t4CancelCommentPopup"> Cancel kommentarpopup </b-button>
+      <b-button @click="t4WriteComment"> Skriver något </b-button>
+      <b-button @click="t4SavePopupComment"> Sparar kommentar </b-button>
+    </b-button-group>
+
+    <div class = "image-selector__toggle">
+      Kommentartoggle
+      <toggle-button v-model="t4.showComment" :sync="true"/>
     </div>
     
 <!-- 
@@ -174,6 +193,7 @@ export default {
       this.t3.areaMoved = true;
     },
     t4Deselect(){
+      this.t4.infoClick = false;
       this.t4.areaSelected = false;
     },
      t4SelectArea(){
@@ -186,6 +206,42 @@ export default {
       );
       */
       this.t4.areaSelected = true;
+    },
+    t4CommentPopup(){
+      this.t4.rightClick = false;
+      this.t4.commentPopup = true;
+      this.t4.areaSelected = true;
+      this.t4.isWriting = true;
+      this.t4.showKeyboard = true;
+    },
+    t4CancelCommentPopup(){
+      this.t4.commentPopup = false;
+      this.t4.areaSelected = false;
+      this.t4.isWriting = false;
+      this.t4.showKeyboard = false;
+    },
+    t4Comment(){
+      this.t4.isWriting = true;
+      this.t4.showKeyboard = true;
+    },
+    t4WriteComment(){
+      this.t4.hasWritten = true;
+      this.t4.showKeyboard = true;
+    },
+    t4CancelComment(){
+      this.t4.isWriting = false;
+      this.t4.hasWritten = false;
+      this.t4.showKeyboard = false;
+    },
+    t4SaveComment(){
+      this.t4.saved = true;
+      this.t4.showKeyboard = false;
+    },
+    t4SavePopupComment(){
+       this.t4.saved = true;
+       this.t4.areaSelected = false;
+       this.t4.commentPopup = false;
+      this.t4.showKeyboard = false;
     },
     resetTask(number){
       switch(number){
@@ -256,9 +312,14 @@ export default {
         case 4:
           this.t4 = {
             rightClick: false,
-            newComment: false,
-            finished: false,
+            commentPopup: false,
+            isWriting: false,
+            hasWritten: false,
+            saved: false,
             areaSelected: false,
+            infoClick: false,
+            showKeyboard: false,
+            showComment: false,
           }
            this.$store.commit("mergeWithState",
             {
@@ -425,8 +486,47 @@ export default {
       if(this.t4.areaSelected){
         newOverlay.push("klar__area-moved--selection.png");
       }
+      
       if(this.t4.rightClick){
         newOverlay.push("klar__right-click.png");
+      }
+      if(this.t4.commentPopup){
+        if(this.t4.hasWritten){
+          if(this.t4.saved){
+            //newOverlay.push("klar__right-click.png");
+          } else {
+            newOverlay.push("klar__add-comment--written.png");
+          }
+        } else {
+          newOverlay.push("klar__add-comment.png");
+        }
+      }
+
+      if(this.t4.infoClick){
+        if(this.t4.isWriting){
+          if(this.t4.hasWritten){
+            if(this.t4.saved){
+              newOverlay.push("klar__area-info--commented.png");
+            } else {
+              newOverlay.push("klar__area-info--written.png");
+            }
+          }else{
+            newOverlay.push("klar__area-info--writing.png");
+          }
+        } else {
+          newOverlay.push("klar__area-info.png");
+        }
+      }
+
+      if(this.t4.showKeyboard){
+        newOverlay.push("keyboard.png");
+      }
+
+      if(this.t4.saved && !this.t4.infoClick && !this.t4.areaSelected){
+        if(this.t4.showComment){
+          newOverlay.push("klar__comment-popup.png");
+        }
+        newBackground.push("klar__with-comment.png");
       }
 
 

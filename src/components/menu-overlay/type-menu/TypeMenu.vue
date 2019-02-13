@@ -47,6 +47,7 @@ export default {
     background: #f8fbfc; 
     color: rgba(0,0,0,0.87);
     border-right: solid 1px;
+        border-top: solid 2px;
     border-color: #e9ecef;
     padding: 1vh;
     z-index: 10;
