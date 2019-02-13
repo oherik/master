@@ -1,7 +1,7 @@
 <template>
   <div class = "right-menu-wrapper">
     <map-buttons></map-buttons>
-    
+     <img class = "scale" alt="" :src="require(`@/assets/50m.png`)">
     <div class = "right-menu" v-if="$store.getters.showRightMenu">
       <map-settings></map-settings>
       <layer-settings></layer-settings>
@@ -45,6 +45,13 @@ export default {
 </script>
 
 <style>
+.scale{
+    min-height: 0;
+    min-width: 0;
+    bottom: 1vh;
+    left: -10vh;
+    position: absolute;
+}
 
   .right-menu-wrapper{
     position: absolute;
