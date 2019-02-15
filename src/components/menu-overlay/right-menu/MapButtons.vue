@@ -10,7 +10,10 @@
         title="Analysis"
         :pressed.sync="showAnalysisSettings"
       > 
-        <v-icon name="chart-pie" scale="1.5"/>
+     <span class="fa-stack">
+  <i class="fas fa-search fa-stack-1x"></i>
+  <i class="fas fa-chart-bar fa-stack-2x"></i>
+</span>
       </b-button>
       
    
@@ -26,7 +29,10 @@
         title="Map settings"
         :pressed.sync="showMapSetting"
       > 
-        <v-icon name="map-marked-alt" scale="1.5"/>
+      <span class="fa-stack">
+  <i class="fas fa-cog fa-stack-1x"></i>
+  <i class="fas fa-map-marked-alt fa-stack-2x"></i>
+</span>
       </b-button>
      </b-button-group>
     <b-button-group vertical class = "map-buttons__button-group">
@@ -35,6 +41,7 @@
         title="Sketch details"
         :pressed.sync="showReport"
       > 
+      
         <v-icon name="file-invoice" scale="1.5"/>
       </b-button>
     </b-button-group>
@@ -107,6 +114,29 @@ export default {
 </script>
 
 <style scoped>
+.fa-chart-bar {
+ top: -1em;
+    font-size: 1em;
+    left: -0.8em;
+    }
+.fa-search{
+  top: -1em;
+    left: 0.1em;
+}
+.fa-map-marked-alt{
+  
+    top: -0.9em;
+    font-size: 1em;
+    left: -0.8em;
+}
+.fa-cog{
+        top: -0.7em;
+    left: 0.2em;
+}
+.fa-stack{
+      width: auto;
+      height: auto;
+}
 
   .map-buttons{
     display: flex;

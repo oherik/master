@@ -36,6 +36,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+        position: relative;
   }
   .tool-menu-button:hover{
      background: #03A9F430;

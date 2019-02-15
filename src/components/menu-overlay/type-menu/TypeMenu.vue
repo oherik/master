@@ -7,7 +7,7 @@
     
       </div>
     </transition>
-    <b-button v-b-tooltip.hover.right.d400 title="Minimize type panel" class = "show-hide show-hide--shown" 
+   <!-- <b-button v-b-tooltip.hover.right.d400 title="Minimize type panel" class = "show-hide show-hide--shown" 
       v-if="!this.$store.state.hideTypeMenu"
       @click="$store.commit('setHideTypeMenu', true)">
         <v-icon name="caret-left" scale="1.5"/>
@@ -17,6 +17,7 @@
       @click="$store.commit('setHideTypeMenu', false)">
         <v-icon name="caret-right" scale="1.5"/>
     </b-button>
+    -->
   </div>
 </template>
 

@@ -22,6 +22,16 @@
           :width="'24px'"
           :height="'24px'"
         />
+         <thumbnail
+          :svg-filepath= "require('../../../assets/SVG/tertiary-road.svg')"
+          color="#FFFFFF"
+          v-if="this.$store.state.activeLine == 'street'"
+        ></thumbnail>
+        <thumbnail
+          :svg-filepath="require('../../../assets/SVG/line.svg')"
+          color="#ECECEC"
+          v-if="this.$store.state.activeLine == 'unassigned'"
+        ></thumbnail>
       </tool-menu-button>
       <tool-menu-button
         tooltip="Area (residential areas, water features, and more)"
@@ -30,6 +40,35 @@
         @button-click="$store.commit('toggleTool', 'area')"
         >
          <v-icon name="draw-polygon" scale="1.5"/>
+        <thumbnail
+          icon-name="home"
+          color="#FFFF83"
+          v-if="this.$store.state.activeArea == 'residential'"
+        ></thumbnail>
+        <thumbnail
+          icon-name="map-marker-alt"
+          color="#ECECEC"
+          v-if="this.$store.state.activeArea == 'unassigned'"
+        ></thumbnail>
+    <thumbnail
+      icon-name="industry"
+       
+        color="#ada5d7"
+     
+          v-if="this.$store.state.activeArea == 'industry'"
+        ></thumbnail>
+
+
+
+
+
+
+
+
+
+
+
+
       </tool-menu-button>
     </div>
      <div class = "tool-menu__button-group">
@@ -55,11 +94,12 @@
 
 <script>
 import ToolMenuButton from './ToolMenuButton.vue'
-
+import Thumbnail from './Thumbnail.vue'
 export default {
   name: 'TopMenu',
   components: {
     ToolMenuButton,
+    Thumbnail
   },
   computed: {
       

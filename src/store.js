@@ -48,7 +48,7 @@ export const store = new Vuex.Store({
     activeLine: "unassigned",
     activeMode: "sketch",
     activeTool: "select",
-    hideTypeMenu: false,
+    hideTypeMenu: true,
     streetType: null,
     residentialType: null,
     residentialHeight: 3,
@@ -94,12 +94,17 @@ export const store = new Vuex.Store({
       state.activeTool = tool;
     },
     toggleTool (state, tool) {
-      if(state.activeTool == tool){
-        state.activeTool='none';
-      } else {
-        state.activeTool = tool;
-        state.hideTypeMenu = false;
-      }
+        if(tool == state.activeTool){
+          
+          state.hideTypeMenu = !state.hideTypeMenu ;
+
+
+        } else {
+          state.activeTool = tool
+          state.hideTypeMenu = false;
+        }
+     
+      
     },
     setHideTypeMenu(state, hide){
       state.hideTypeMenu = hide;

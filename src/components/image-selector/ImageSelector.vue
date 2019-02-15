@@ -33,8 +33,8 @@
       <toggle-button v-model="t2.displayErrorMessage" :sync="true"/>
     </div>
     <div class = "image-selector__toggle">
-      Ignore error
-      <toggle-button v-model="t2.ignoreError" :sync="true"/>
+    <!--  Ignore error
+      <toggle-button v-model="t2.ignoreError" :sync="true"/>-->
     </div>
     <b-button-group vertical>
       <b-button @click="t2SelectStreet"> Select väg </b-button>
@@ -56,8 +56,8 @@
       <toggle-button v-model="t3.displayErrorMessage" :sync="true"/>
     </div>
     <div class = "image-selector__toggle">
-      Ignore error
-      <toggle-button v-model="t3.ignoreError" :sync="true"/>
+     <!--  Ignore error
+      <toggle-button v-model="t3.ignoreError" :sync="true"/> -->
     </div>
     <b-button-group vertical>
       <b-button @click="t3ViewAnalysis"> Visa analys </b-button>
@@ -103,6 +103,11 @@
 <!-- 
    __________________________TASK 5_______________________________
 -->
+
+ <h2>Task 4 (Kommentar)</h2>
+    <b-button-group vertical>
+      <b-button :variant="'primary'" @click="resetTask(5)"> Go to task 5 </b-button>
+    </b-button-group>
 
   </div>
 </template>
@@ -336,6 +341,24 @@ export default {
             }
           );
           break;
+        case 5:
+          this.t5 = {
+          }
+           this.$store.commit("mergeWithState",
+            {
+              backgroundImage: "klar.png",
+              backgroundTopography: "klar-topography.png",
+              activeTool: "select",
+              activeLine: "unassigned",
+              activeArea: "unassigned",
+              activeMode: "sketch",
+              activeSketchId: 1,
+              overlayLayers: [],
+              analysis: "",
+              activeLayerMenu: "",
+            }
+          );
+          break;
       }
       this.activeTask = number;
     },
@@ -528,8 +551,6 @@ export default {
         }
         newBackground.push("klar__with-comment.png");
       }
-
-
 
       this.$store.commit("mergeWithState",
             {

@@ -32,7 +32,7 @@
       <choice
         name="Street"
         color="#FFFFFF"
-        tooltip="An urban street"
+        tooltip="An urban street, within an urban area"
         v-bind:is-active="this.$store.state.activeLine == 'street'"
         @button-click="$store.commit('setActiveLine', 'street')"
         :svg-filepath= "require('../../../assets/SVG/tertiary-road.svg')"
